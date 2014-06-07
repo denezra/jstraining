@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Training</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*Class Function
+		-----------------*/
+		//Assinging anonymous function to a variable
+		var c = function() {};
+
+		//Has alert for test
+		c.prototype.foo = function() {
+			//Alert string
+			alert('c.prototype.foo');
+			//JSON style has 2 parameters 1 variable and 1 function
+			var foo_child = {
+				//variable store number 
+				foo_child_para1: 'foo_child_para1',
+
+				//variable function that call foo_child_para1 
+				foo_child_para2: function() { 
+					alert(this.foo_child_para1); 
+				},
+
+				foo_child_para3: {
+					foo_child_para3_inner1: 'foo_child_para3_inner1',
+
+					foo_child_para3_inner2: function() {
+						alert(this.foo_child_para3_inner1);
+
+						console.log(foo_child[]);
+					}
+				}
+			};
+			//Call for the foo_child_para2
+			foo_child
+				.foo_child_para2();
+
+			//Call for the foo_child_para3
+			foo_child
+				.foo_child_para3
+				.foo_child_para3_inner2();
+		};
+
+		//Has a function that will call for foo that
+		c.prototype.bar	= function() {
+			//Call function foo
+			this.foo();
+		};
+
+		//Call for bar
+		c.prototype.bar();
+		//==========================================
+
+		//JSON Style has 2 parameters 1 variable and 1 function
+		var objectV1 = {
+			//variable store string 
+			foo: 'objectV1',
+
+			bar: function() {
+				//Will call for the parameter foo
+				alert(this.foo);
+			}
+
+		};
+		//Call for the bar function
+		objectV1.bar();
+
+		//JSON Style has 2 parameters 2 function
+		var objectV2 = {
+			foo: function() {
+				//variable store string 
+				var x = 'objectV2';
+				//Return the variable
+				return x;
+			},
+
+			bar: function() {
+				//Call the foo function
+				alert(this.foo());
+			}
+		};
+		//Call for the bar function
+		objectV2.bar();
+	</script>
+</body>
+</html>
+

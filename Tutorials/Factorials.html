@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Factorials</title>
+</head>
+<body>
+	<h2>Table of Factorials</h2>
+	<form>
+		Factorial Number: 	<input type="text" name="factorial" id="text_first"><br>
+		Counter: <input type="text" name="counter" id="text_second">
+	</form>
+	<script type="text/javascript">
+		
+		var fact = 1;
+		for (var i = 1; i <= 10; i++) {
+			fact = fact * i;
+			document.write(i + ' ! = ' + fact + '<br>')
+		};
+	</script>
+</body>
+</html>
+
