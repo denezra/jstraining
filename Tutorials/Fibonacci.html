@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Training</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//Write the title in h2 tag
+		document.write("<h2>Table of Fibonacci Numbers</h2>");
+		//has the looping and math computation
+		for (var i=0, j=1, k=0, fib=0; i<50; i++, fib=j+k, j=k, k=fib){
+			//Write the value
+			document.write('Fibonacci (' + i + ') = ' + fib);
+			//Write the break tag
+			document.write('<br>')
+		};
+	</script>
+</body>
+</html>
+
