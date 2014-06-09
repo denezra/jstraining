@@ -7,11 +7,11 @@
 	<script type="text/javascript">
 		/*Class Function
 		-----------------*/
-		//Assinging anonymous function to a variable
-		var c = function() {};
+		//Assinging anonymous function to a variable and prototype method
+		var c = function() {}, public = c.prototype;
 
 		//Has alert for test
-		c.prototype.foo = function() {
+		public.foo = function() {
 			//Alert string
 			alert('c.prototype.foo');
 			//JSON style has 2 parameters 1 variable and 1 function
@@ -30,30 +30,35 @@
 					foo_child_para3_inner1: 'foo_child_para3_inner1',
 
 					foo_child_para3_inner2: function() {
-						//variable function that call foo_child_para3_inner1
-						alert(this.foo_child_para3_inner1);
-
-					}.bind(foo_child);
+						//variable function checker
+						console.log(this);
+					}
 				}
 			};
+
 			//Call for the foo_child_para2
 			foo_child
 				.foo_child_para2();
-
 			//Call for the foo_child_para3
 			foo_child
 				.foo_child_para3
 				.foo_child_para3_inner2();
+			//Call for the foo_child_para3 but only the parent object is foo_child
+			foo_child
+				.foo_child_para3
+				.foo_child_para3_inner2
+				.apply(foo_child);
 		};
 
 		//Has a function that will call for foo that
-		c.prototype.bar	= function() {
+		public.bar	= function() {
 			//Call function foo
+			console.log(this);
 			this.foo();
 		};
 
 		//Call for bar
-		c.prototype.bar();
+		public.bar();
 		//==========================================
 
 		//JSON Style has 2 parameters 1 variable and 1 function

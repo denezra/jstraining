@@ -36,6 +36,8 @@
 		eve.talk("yo");
 		//Pass Object alice and String "hello"
 		eve.talk.apply(alice, ["hello"]);
+		//Pass Object alice and String "Hi"
+		eve.talk.call(alice, "Hi");
 		//Pass Global Object and String "hi"
 		eve.talk.apply(window, ["hi"]);
 		/*==================Bind Scope Binding==================*/
@@ -93,7 +95,6 @@
 				nestedActionV2("hello");
 			}
 		};
-
 		//Trigger the function action
 		object.action();
 	</script>
