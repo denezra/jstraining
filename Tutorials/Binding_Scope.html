@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Binding Scope</title>
+</head>
+<body>
+	<script> 
+		/*==================Apply Scope Binding==================*/
+		//Create h2 tag
+		document.write("<h2>< Apply > Scope Binding</h2>");
+		//Global Object
+		window.name = "the window";
+		//Object
+		alice = {
+			name: "Alice"
+		};
+		/**
+		 * Has two object
+		 * @type Object
+		 * @type Function
+		 */
+		eve = {
+			name: "Eve",
+			/**
+			* Write on the html
+			* @param  String 
+			* @return String
+			*/
+			talk: function(greeting) {
+				document.write(greeting + ", my name is " + this.name + "<br>");
+			}
+		};
+
+		//Pass String "yo"
+		eve.talk("yo");
+		//Pass Object alice and String "hello"
+		eve.talk.apply(alice, ["hello"]);
+		//Pass Global Object and String "hi"
+		eve.talk.apply(window, ["hi"]);
+		/*==================Bind Scope Binding==================*/
+		//Create h2 tag
+		document.write("<h2>< Bind > Scope Binding</h2>");
+		/**
+		 * Define a new prototype fo the function class called bind
+		 * @param  Object  scope  Object parameters
+		 * @return Object
+		 */
+		Function.prototype.bind = function(scope) {
+			var _function = this;
+			return function() {
+				return _function.apply(scope, arguments);
+			}
+		};
+
+		alice = {
+			//Object of alice
+			name: 	"alice",
+			title: 	"Squadron" 
+		};
+
+		eve = {
+			//Object of eve
+			name: "Eve",
+
+			talk: function(greeting) {
+				document.write(greeting + ", my name is " + this.name + "<br>");
+			}
+			//Bind to the object of alice
+			.bind(alice) 
+		};
+		//Pass String "Hello"
+		eve.talk("hello");
+
+		window.name = "window";
+
+		object = {
+			name: "object",
+
+			action: function(greeting) {
+				//Call for the window Object
+				nestedActionV1 = function(greeting) {
+				  document.write(greeting + " " + this.name + "<br>");
+				};
+
+				//Call for object Object
+				nestedActionV2 = function(greeting) {
+				  document.write(greeting + " " + this.name + "<br>");
+				}.bind(this);
+
+				//Pass String "Hello"
+				nestedActionV1("hello");
+				nestedActionV2("hello");
+			}
+		};
+
+		//Trigger the function action
+		object.action();
+	</script>
+</body>
+</html>

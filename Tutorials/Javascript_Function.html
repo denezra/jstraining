@@ -29,12 +29,11 @@
 					//variable store string 
 					foo_child_para3_inner1: 'foo_child_para3_inner1',
 
-					//variable function that call foo_child_para1??????????? 
 					foo_child_para3_inner2: function() {
+						//variable function that call foo_child_para3_inner1
 						alert(this.foo_child_para3_inner1);
 
-						console.log(foo_child[]);
-					}
+					}.bind(foo_child);
 				}
 			};
 			//Call for the foo_child_para2
