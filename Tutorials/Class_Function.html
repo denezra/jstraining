@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Class Function</title>
+</head>
+<body>
+	<script>
+		var House = function(name,rooms,price,garage) {
+			this.name   =	name;
+			this.rooms  =	rooms;
+			this.price  =	price;
+			this.garage =	garage;
+		}, publicHouse = House.prototype;
+		function view() {
+			var self = this;
+			document.write(self.name+' has '+self.rooms+' rooms, '+
+				(self.garage?'has a':'no')+'garage, costs £'+self.price+'<br>');
+		};
+		function totalcost() {
+			var self = this;
+			document.write(self.name+' has a total cost involved of £'+
+				eval(self.price+self.survey+self.price*self.salescommission)+'<br>');
+		}
+		publicHouse.view = view;
+		publicHouse.totalcost = totalcost;
+		publicHouse.salescommission = .01;
+		publicHouse.survey = 1000;
+		house1 = new House('House 1',4,100000,false);
+		house2 = new House('Big House',5,200000,true);
+		house1.view();
+		house1.totalcost();
+		house2.view();
+		house2.totalcost();
+	</script>
+</body>
+</html>

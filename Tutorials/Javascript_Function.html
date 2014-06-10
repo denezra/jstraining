@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		/*Class Function
 		-----------------*/
-		//Assinging anonymous function to a variable and prototype method
+		//Assinging anonymous function to a variable
 		var c = function() {}, public = c.prototype;
 
 		//Has alert for test
@@ -47,16 +47,16 @@
 			foo_child
 				.foo_child_para3
 				.foo_child_para3_inner2
-				.apply(foo_child);
+				.calld(foo_child);
 		};
 
 		//Has a function that will call for foo that
 		public.bar	= function() {
 			//Call function foo
-			console.log(this);
+			//
 			this.foo();
 		};
-
+		console.log(this);
 		//Call for bar
 		public.bar();
 		//==========================================

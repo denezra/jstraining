@@ -36,11 +36,13 @@
 		eve.talk("yo");
 		//Pass Object alice and String "hello"
 		eve.talk.apply(alice, ["hello"]);
-		//Pass Object alice and String "Hi"
-		eve.talk.call(alice, "Hi");
 		//Pass Global Object and String "hi"
 		eve.talk.apply(window, ["hi"]);
 		/*==================Bind Scope Binding==================*/
+		/* The <bind()> method is used primarily to call a function with the <this> value set 
+		 * explicity. It other words, <bind()> allows you to easily set which specific object will 
+		 * be bound to <this> when a function or method is invoked
+		 */
 		//Create h2 tag
 		document.write("<h2>< Bind > Scope Binding</h2>");
 		/**
@@ -58,15 +60,16 @@
 		alice = {
 			//Object of alice
 			name: 	"alice",
-			title: 	"Squadron" 
+			title: 	"1st Squadron" 
 		};
 
 		eve = {
 			//Object of eve
 			name: "Eve",
-
+			title: 	"1st Squadron",
 			talk: function(greeting) {
-				document.write(greeting + ", my name is " + this.name + "<br>");
+				document.write(greeting + ", my name is " + this.name + " part of the" + 
+					this.title +"<br>");
 			}
 			//Bind to the object of alice
 			.bind(alice) 
@@ -79,15 +82,15 @@
 		object = {
 			name: "object",
 
-			action: function(greeting) {
+			action: function() {
 				//Call for the window Object
 				nestedActionV1 = function(greeting) {
-				  document.write(greeting + " " + this.name + "<br>");
+					document.write(greeting + " " + this.name + "<br>");
 				};
 
 				//Call for object Object
 				nestedActionV2 = function(greeting) {
-				  document.write(greeting + " " + this.name + "<br>");
+				  	document.write(greeting + " " + this.name + "<br>");
 				}.bind(this);
 
 				//Pass String "Hello"
@@ -97,6 +100,23 @@
 		};
 		//Trigger the function action
 		object.action();
+
+		var greet = function (name, gender, age) {
+			//If a male, use Mr., else use Ms.
+			var salutation = gender === "male" ? "Mr. " : "Ms. ";
+			//If adult or youngster
+			if(age > 25) {
+				document.write("Hello, " + salutation + name + "." + "<br>");
+			} else {
+				document.write("Hey, " + name + "." + "<br>");
+			}
+      	};
+		var greetAnAdultMale = greet.bind();
+		greetAnAdultMale("John Hartlove", "male", 45);
+
+		var greetAYoungster = greet.bind();
+		greetAYoungster("Alex", "", 16);
+		greetAYoungster("Emma Waterloo", "", 16);
 	</script>
 </body>
 </html>
