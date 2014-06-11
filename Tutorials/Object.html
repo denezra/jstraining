@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Object</title>
+</head>
+<body>
+	<script>
+		/**
+		 * Object function, since Javascript has no object
+		 * @param  object o will contain
+		 * @return objectm  
+		 */
+		if (typeof Object.create !== 'function') {
+		    Object.create = function (o) {
+		        function F() {}
+		        F.prototype = o;
+		        return new F();
+		    };
+		}
+		newObject = Object.create();
+
+		console.log(newObject);
+	</script>
+</body>
+</html>

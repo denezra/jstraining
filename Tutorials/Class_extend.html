@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Class Extend</title>
+</head>
+<body>
+	<script>
+		var Class = function(methods) {  
+		    var klass = function() {   
+		        this.initialize.apply(this, arguments);         
+		    }; 
+		    var property;
+		    for (property in methods) {
+		       klass.prototype[property] = methods[property];
+		    }
+		         
+		    if (!klass.prototype.initialize) klass.prototype.initialize = function(){};     
+		   
+		    return klass;   
+		};
+		var Person = Class({
+		    initialize: function(name, age) {
+		        this.name = name;
+		        this.age  = age;
+		    },
+		    toString: function() {
+		        return "My name is "+this.name+" and I am "+this.age+" years old.";
+		    }
+		});
+
+		console.log(Person);
+	</script>
+</body>
+</html>

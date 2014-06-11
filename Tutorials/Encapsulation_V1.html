@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Encapsulation and Binding</title>
+</head>
+<body>
+	<script>
+		var Compute = (function() {
+			var c = function(operation, firstNumber, secondNumber) {
+				this.__construct(operation, firstNumber, secondNumber)
+			}, public = c.prototype;
+			/* Constants
+			-------------------------------*/
+			/* Public Properties
+			-------------------------------*/
+			/* Private Properties
+			-------------------------------*/
+			var _result = null;
+			/* Magic
+			-------------------------------*/
+			/* Loader
+			-------------------------------*/
+			/* Construct
+			-------------------------------*/
+			public.__construct = function(operation, firstNumber, secondNumber) {
+				this.compute(operation, firstNumber, secondNumber);
+			}
+			/* Public Methods
+			-------------------------------*/
+			public.compute = function(operation, firstNumber, secondNumber) {
+				switch(operation.toLowerCase()) {
+					case 'add':
+						_result = firstNumber + secondNumber; 
+						break;
+					case 'subtract':
+						_result = firstNumber - secondNumber;
+						break;
+					case 'multiply':
+						_result = firstNumber * secondNumber;
+						break;
+					case 'division':
+						_result = firstNumber / secondNumber;
+						break;	
+				};
+			}
+
+			public.getResult = function(){
+				return _result;
+			}
+			/* Private Methods
+			-------------------------------*/
+			/* Adaptor
+			-------------------------------*/
+			return c;
+		})();
+
+		//var objectCompute = new Compute()
+
+		var generator = function() {}
+		console.log(generator.apply(Compute));
+		//console.log(objectCompute.getResult());
+	</script>
+</body>
+</html>

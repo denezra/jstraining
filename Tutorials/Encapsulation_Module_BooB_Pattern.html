@@ -6,85 +6,102 @@
 </head>
 <body>
 	<script>
+		//Global Variable
+		var def = "Outside";
 		/**
 		 * Module Patter (BooBs()() Pattern) - are an intergral piece 
 		 * of any robust application's architecture and typically help 
 		 * in keeping the units of code for a project both cleanly
 		 * separated and organized. 
 		 */
-		var def = "Outside";
-		var user = (function(){
-			var user = function(){
-				this.__constructor();
-			}, public = user.prototype;
+		/**
+		 * User Class Function
+		 * @return Object
+		 */
+		//Encapsulate the whole function with <()()> to protect 
+		//the private properties and methods 
+		var User = (function(){
+			var c = function(user, title){
+				this.__constructor(user, title);
+			}, public = c.prototype;
+			/* Constant
+			--------------------------------*/
 			/* Public Properties
 			-------------------------------*/
-			public.z = 1;
-			public.def = "Inside";
+			public.def  = "Inside";
+			public.z    = 1;
 			/* Private Properties
 			-------------------------------*/
-			var data= {};
-			var x = 5;
+			var _data = {};
+			var _x    = 5;
 			/* Loader
-			-------------------------------*/  
+			-------------------------------*/
 			/* Construct
 			-------------------------------*/
-			public.__constructor = function() {
+			public.__constructor = function(user, title) {
 				console.log("..Constructing User ");
+				this.setData(user, title);
 			}; 
 			/* Public Methods
 			-------------------------------*/
-			public.data_holder = function() {
+			public.setData = function(user_data, title_data) {
 				//Integrate the data
-				data = {
-					user : "Alice",
-					title: "Engineer"
+				_data = {
+					user : user_data,
+					title: title_data
 				};
 				//Return the data
-				return data;
+				return _data;
 			};
 
-			public.inc = function() {
-
+			public.increaseValue = function() {
 				this.z = this.z;
 				return this.z++;
 			};
 
-			public.dec = function() {
+			public.decreaseValue = function() {
 				this.z = this.z;
 				return this.z--;
 			};
-
-			public.spy = function() {
+			// Call and return private properties and methods
+			public.outLooker = function() {
+				//Call private methods apply with this
 				_private.call(this);
-				return x, data;
+				//Return Private Variable
+				return _x, _private.call(this);
 			};
 			/* Private Methods
 			-------------------------------*/
-			var _private = function(args) {
-				console.log("Private ", this.z, x, this.def);
-				return args;
+			var _private = function() {
+				return _data;
 			};    
 			/* Adaptor
 			-------------------------------*/
-			return user;
+			return c;
 		})();
 
-		var member = (function(){
-			var member = function(){
-				this.__constructor();
-			}, public = member.prototype;
+		var Member = (function(){
+			var c = function(user, title){
+				this.__constructor(user, title);
+			}, public = c.prototype;
+			/* Constant
+			--------------------------------*/
 			/* Public Properties
 			-------------------------------*/
-			public.member_user = Object.create(user.prototype)
+			//Copying the whole function in user 
+			public.extendUser = Object.create(User.prototype)
+			
+			//Point of reference to the user reference
+			//public.member_user = user.prototype;
 			/* Private Properties
 			-------------------------------*/
 			/* Loader
 			-------------------------------*/  
 			/* Construct
 			-------------------------------*/
-			public.__constructor = function() {
-				console.log("..Constructing Member ", this.member_user.data_holder());
+			public.__constructor = function(user, title) {
+				console.log("..Constructing Member ");
+				this.extendUser.setData(user, title)
 			}; 
 			/* Public Methods
 			-------------------------------*/
@@ -92,19 +109,12 @@
 			-------------------------------*/
 			/* Adaptor
 			-------------------------------*/
-			return member;
+			return c;
 		})();
 
-		var object_user = new user();
-		var object_member = new member();
-		console.log(object_user);
-		console.log(object_member);
-		//object_user.inc();
-		//object_user.dec();
-		//object_user.dec();
-		
-		//object_user.data_holder();
-		//console.log(object_user.spy());
+		var object_user = new User('Den', 'Trainee');
+		var object_member = new Member('Jes', 'Trainee');
+		console.log(object_member.extendUser.outLooker());
 	</script>
 </body>
 </html>
