@@ -6,9 +6,15 @@
 </head>
 <body>
 	<script>
+		var generator = {
+			operation: 'add',
+			firstNumber: 4,
+			secondNumber: 6
+		};
+
 		var Compute = (function() {
 			var c = function(operation, firstNumber, secondNumber) {
-				this.__construct(operation, firstNumber, secondNumber)
+				this.__construct(operation, firstNumber, secondNumber);
 			}, public = c.prototype;
 			/* Constants
 			-------------------------------*/
@@ -29,7 +35,7 @@
 			/* Public Methods
 			-------------------------------*/
 			public.compute = function(operation, firstNumber, secondNumber) {
-				switch(operation.toLowerCase()) {
+				switch(operation) {
 					case 'add':
 						_result = firstNumber + secondNumber; 
 						break;
@@ -55,11 +61,9 @@
 			return c;
 		})();
 
-		//var objectCompute = new Compute()
-
-		var generator = function() {}
-		console.log(generator.apply(Compute));
-		//console.log(objectCompute.getResult());
+		var objectCompute = new Compute();
+		objectCompute.compute.call( this, generator.operation, generator.firstNumber, generator.secondNumber);
+		console.log(objectCompute.getResult());
 	</script>
 </body>
 </html>
