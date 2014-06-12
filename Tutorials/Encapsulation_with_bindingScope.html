@@ -6,13 +6,25 @@
 </head>
 <body>
 	<script>
-		var generator = {
+		//Object - For .call() scope variable
+		var firstGenerator = {
+		//Object's property
 			operation: 'add',
 			firstNumber: 4,
 			secondNumber: 6
 		};
 
+		//Object - For .apply() scope variable
+		// var secondGenerator = {
+		// 	//Object's property
+		// 	operation: 'subtract',
+		// 	firstNumber: 16,
+		// 	secondNumber: 4
+		// };
+		var secondGenerator = ['SUbtract', 18, 6];
+
 		var Compute = (function() {
+			//Applied the Class Function
 			var c = function(operation, firstNumber, secondNumber) {
 				this.__construct(operation, firstNumber, secondNumber);
 			}, public = c.prototype;
@@ -22,6 +34,7 @@
 			-------------------------------*/
 			/* Private Properties
 			-------------------------------*/
+			//Private variable for result
 			var _result = null;
 			/* Magic
 			-------------------------------*/
@@ -29,13 +42,19 @@
 			-------------------------------*/
 			/* Construct
 			-------------------------------*/
+			//Constructor for the Class Function
 			public.__construct = function(operation, firstNumber, secondNumber) {
 				this.compute(operation, firstNumber, secondNumber);
 			}
 			/* Public Methods
 			-------------------------------*/
+			//Function that will compute for the firstNumber and secondNumber
+			//according to the operation
+			//Passing the object onto the function
+			//public.compute = function(generate) {
 			public.compute = function(operation, firstNumber, secondNumber) {
-				switch(operation) {
+				console.log();
+				switch(String.prototype.toLowerCase(operation)) {
 					case 'add':
 						_result = firstNumber + secondNumber; 
 						break;
@@ -50,7 +69,7 @@
 						break;	
 				};
 			}
-
+			//Function that will get the result fromt he compute function.
 			public.getResult = function(){
 				return _result;
 			}
@@ -58,11 +77,19 @@
 			-------------------------------*/
 			/* Adaptor
 			-------------------------------*/
-			return c;
+			//Return all the properties and method that are attach to c
+			//Class Function
+ 			return c;
 		})();
 
 		var objectCompute = new Compute();
-		objectCompute.compute.call( this, generator.operation, generator.firstNumber, generator.secondNumber);
+		//Call the firstGenerator to objectCompute 
+		// objectCompute.compute.call( 
+		// 	this, 					  firstGenerator.operation, 
+		// 	firstGenerator.firstNumber, firstGenerator.secondNumber
+		// );
+		//Apply the secondGenerator to objectCompute
+		objectCompute.compute.apply(this, secondGenerator);
 		console.log(objectCompute.getResult());
 	</script>
 </body>
