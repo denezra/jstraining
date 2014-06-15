@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Capturing and Encapsulation</title>
+</head>
+<body>
+	<ul>
+		<li class="1">Item 1</li>
+		<li class="2">Item 2</li>
+		<li class="3">Item 3</li>
+		<li class="4">Item 4</li>
+	</ul>
+	<script>
+		//Assigning all the li tag to items variable
+		var items = document.getElementsByTagName('li');
+		//Loop and assign the click event on each items
+		for(var i = 0; i < items.length; i++) {
+			//Capturing and Encapsulating the items to access li tags
+			items[i].onclick = (function(item) {
+				//Returning the items according to zero-based index
+				return function(){
+					item.innerHTML = 'Test';
+				}
+			})(items[i]);
+		};
+		//Bad Practice: Adding an event on the list items but never 
+		//remove that event.
+		// for(var i = 0; i < items.length; i++) {
+		// 	items[i].addEventListener('click', function(e){
+		// 		e.toElement.innerHTML = 'Test';
+		// 	})
+		// }
+	</script>
+</body>
+</html>
