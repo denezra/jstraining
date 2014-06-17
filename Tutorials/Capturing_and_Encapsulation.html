@@ -20,6 +20,7 @@
 			items[i].onclick = (function(item) {
 				//Returning the items according to zero-based index
 				return function(){
+					console.log('RETURN ',item);
 					item.innerHTML = 'Test';
 				}
 			})(items[i]);
