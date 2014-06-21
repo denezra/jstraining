@@ -1,25 +1,25 @@
 module.exports = function() {
 	return{
 		detail: function(arguments) {
-			function removeSpecial(value) {
-				return value.replace('%20',' ');
-			}
-			var counter = 0;
-			var nameText, 
-				 ageText, 
-				 titleText;
+			var counter,
+			    nameText  = 'null', 
+				 ageText   = 'null', 
+				 titleText = 'null';
 			for(counter in arguments) {
 				if(arguments.hasOwnProperty(counter)) {
 					if(counter == 'name') {
-						nameText  = 'Your ' + counter + ' is ' + removeSpecial(arguments.name) + '. ';
+						nameText  = 'Your ' + counter + ' is ' + arguments.name + '. ';
 					} else if(counter == 'age') {
-						ageText   = 'Your ' + counter + ' is ' + removeSpecial(arguments.age) + '. ';
+						ageText   = 'Your ' + counter + ' is ' + arguments.age + '. ';
 					} else if(counter == 'title') {
-						titleText = 'Your ' + counter + ' is ' + removeSpecial(arguments.title) + '. ';
+						titleText = 'Your ' + counter + ' is ' + arguments.title + '. ';
 					}
 				}
 			}
 			return 'User\'s Detail: ' + nameText + ageText + titleText;
+		},
+		employee: function(arguments) {
+
 		}
 	}
 };
