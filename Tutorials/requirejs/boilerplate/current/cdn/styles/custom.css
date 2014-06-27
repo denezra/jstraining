@@ -1,0 +1,9 @@
+.promo .analytics {
+	background: #FFFFFF;
+	border: solid 1px #CCCCCC;
+	float: left;
+	height: 300px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	width: 49%;
+}

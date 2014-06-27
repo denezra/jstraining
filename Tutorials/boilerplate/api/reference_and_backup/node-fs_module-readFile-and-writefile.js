@@ -12,6 +12,6 @@ fs.readFile('test.txt', function(error, data) {
 });
 
 fs.writeFile('test2.txt', 'Hello World!', function(error) {
-	if(error) throw errow;
+	if(error) throw error;
 	console.log('Successfully created a file');
 });
