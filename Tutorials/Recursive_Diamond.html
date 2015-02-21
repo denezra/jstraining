@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function diamond(n) {
+	//Check for odd integer
+	if(n%2 !== 1){
+		//If even integer stop;
+		alert('Please input odd numbers only');
+		return;
+	}
+
+	//Start pre tag for spacing purposes
+	document.write("<pre>");
+
+	//Upper body
+	for(i=1; i<=n; i+=2) {
+		//Positioning Space according -n/2
+		for (s=0; s<(n-i/2-n/2); s++) {
+			document.write(" ");
+		}
+		//Positioning Asterisk
+		for (j=1; j<=i; j++) {
+			document.write("*");
+		}
+		document.write("<br>")
+	}
+	//Check if input is 1 will never write lower body
+	if(n !== 1) { 
+		//Lower body 
+		for(i=1; i>=0; i-=2) {
+			//Positioning Space according -n/2
+			for (s=0; s<(n-i/2-n/2); s++) {
+				document.write(" ");
+			}
+			//Positioning Asterisk
+			for (j=1; j<=i; j++) {
+				document.write("*");
+			}
+			document.write("<br>")
+		}
+	}
+
+	//End pre tag
+	document.write("</pre>");
+}
+
+diamond(1);
+</script>
+
+</body>
+</html>
